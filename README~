@@ -3,4 +3,4 @@ A test app using dropbox api.
 first_app.py is the main file. Run it using the python interpreter and follow the instructions from there on.
 
 The app uploads the contents of the file 'file_to_be_uploaded' in a file named 'uploaded.txt' in your dropbox account.
-It also simultaneously downloads the file 'downloaded.txt'.
+It also simultaneously downloads the file 'Getting Started.pdf' in the download folder.
