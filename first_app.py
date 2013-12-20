@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import dropbox
 
 # Get your app key and secret from the Dropbox developer website
@@ -22,8 +23,8 @@ client = dropbox.client.DropboxClient(access_token)
 print 'linked account: ', client.account_info()
 
 #Uploading file
-f = open('./working-draft.txt')
-response = client.put_file('/magnum-opus.txt', f) #put_file takes a path pointing to where we want the file, a file-like object to be uploaded there.
+f = open('./file_to_be_uploaded.txt')
+response = client.put_file('/uploaded.txt', f) #put_file takes a path pointing to where we want the file, a file-like object to be uploaded there.
 print "uploaded:", response
 
 #metadata for folder
@@ -31,8 +32,8 @@ folder_metadata = client.metadata('/')
 print "metadata:", folder_metadata
 
 #downloading file
-f, metadata = client.get_file_and_metadata('/magnum-opus.txt')
-out = open('magnum-opus.txt', 'w')
+f, metadata = client.get_file_and_metadata('/Getting Started.pdf')
+out = open('download/downloaded.pdf', 'w')
 out.write(f.read())
 out.close()
 print metadata #return metadata about the file
