@@ -1,1 +1,3 @@
 A test app using dropbox api.
+
+test_app.py is the main file. Run it using the python interpreter and follow the instructions from there on.
