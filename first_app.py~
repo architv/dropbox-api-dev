@@ -33,7 +33,7 @@ print "metadata:", folder_metadata
 
 #downloading file
 f, metadata = client.get_file_and_metadata('/Getting Started.pdf')
-out = open('downloaded.pdf', 'w')
+out = open('download/downloaded.pdf', 'w')
 out.write(f.read())
 out.close()
 print metadata #return metadata about the file
