@@ -22,7 +22,7 @@ client = dropbox.client.DropboxClient(access_token)
 print 'linked account: ', client.account_info()
 
 #Uploading file
-f = open('/home/archit/Documents/Dropbox/dropbox-python-sdk-1.6/working-draft.txt')
+f = open('./working-draft.txt')
 response = client.put_file('/magnum-opus.txt', f) #put_file takes a path pointing to where we want the file, a file-like object to be uploaded there.
 print "uploaded:", response
 
