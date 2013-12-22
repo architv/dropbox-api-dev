@@ -45,21 +45,25 @@ class DropboxApp:
         for path in [entry['path'] for entry in self.client.metadata('/' + fname)['contents'] if not entry['is_dir']]:
             name = os.path.basename(path)
             print 'Saving "%s"...' % name
-            with open(name, 'wb') as out:
-                with self.client.get_file(path) as f:
-                    out.write(f.read())
-
+            try:
+                with open(name, 'wb') as out:
+                    with self.client.get_file(path) as f:
+                        out.write(f.read())
+            except:
+                print "error"
+                
     def upload_cont(self, upload):
         bigFile = open(upload, 'rb')
         size = os.path.getsize(upload)
         uploader = self.client.get_chunked_uploader(bigFile, size)
-        print "uploading: ", size
+        print "uploading:", size, "bytes"
         while uploader.offset < size:
             try:
                 upload = uploader.upload_chunked()
             except rest.ErrorResponse, e:
                 print "Error"
         uploader.finish('/bigFile.txt')
+        print "File uploaded successfully"
         
 if __name__ == "__main__":
     drop = DropboxApp()
