@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import webbrowser
 import os
-import errno
 from configobj import ConfigObj
 import dropbox
 
@@ -65,7 +64,7 @@ class DropboxApp:
 if __name__ == "__main__":
     drop = DropboxApp()
     folderName = 'images'    
-    #drop.download_cont('images')
+    drop.download_cont('./images')
     drop.upload_cont('file_to_be_uploaded.txt')
     
         
