@@ -3,7 +3,7 @@ handlr
 handlr is an app which lets you download and upload content in your dropbox account.
 
 first_app_1.0.py is the main file. Run it using the python interpreter and follow the instructions from there on.
-The app uploads the text file 'file_to_be_uploaded' in your dropbox folder and downloads all the images from a specified folder on your system.
+The app uploads the text file 'file_to_be_uploaded' in your dropbox folder.
 
 
 Changelog:

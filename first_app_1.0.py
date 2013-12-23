@@ -22,6 +22,9 @@ class DropboxApp:
            
         #if the user is using the app for the first time, we'll have to authenticate the app first    
         except:
+            print "Since you are a fisrt time user, you'll have to sign in and authenticate the app"
+            print "Opening http://wwww.dropbox.com"
+            print "Please wait"
             session = dropbox.session.DropboxSession(app_key,app_secret,access_type)
             
             request_token = session.obtain_request_token()
@@ -38,20 +41,20 @@ class DropboxApp:
             token_file.write("%s|%s" % (access_token.key,access_token.secret) )
             token_file.close()
 
+    #function which downloads all the images inside a specified folder
     def download_cont(self, folderName):
         fname = folderName
         folder_metadata = self.client.metadata('/' + fname)
-        #print folder_metadata
         for path in [entry['path'] for entry in self.client.metadata('/' + fname)['contents'] if not entry['is_dir']]:
             name = os.path.basename(path)
             print 'Saving "%s"...' % name
             try:
                 with open(name, 'wb') as out:
-                    with self.client.get_file(path) as f:
-                        out.write(f.read())
+                    out.write(self.client.get_file(path).read())
             except:
                 print "error"
-                
+
+    #function to upload a file using chunked upload            
     def upload_cont(self, upload):
         bigFile = open(upload, 'rb')
         size = os.path.getsize(upload)
@@ -67,9 +70,9 @@ class DropboxApp:
         
 if __name__ == "__main__":
     drop = DropboxApp()
-    folderName = 'images'    
-    drop.download_cont('./images')
-    drop.upload_cont('file_to_be_uploaded.txt')
+    folderName = 'images' #folderName --> the path of the folder in your dropbox directory which is to be downloaded   
+    drop.download_cont(folderName) 
+    drop.upload_cont('file_to_be_uploaded.txt') #the function takes the path of the file to be uploaded as argument
     
         
         
